@@ -1,6 +1,7 @@
 import json
 import sys
 
+
 def bucket_facts(buckets):
     """Turn the list of buckets into Clingo fact lines."""
     lines = []
@@ -14,7 +15,10 @@ def bucket_facts(buckets):
             lines.append(f'encrypted("{name}").')
         if b.get("sensitive"):
             lines.append(f'sensitive("{name}").')
+        if b.get("must_stay_public"):
+            lines.append(f'must_stay_public("{name}").')
     return lines
+
 
 def database_facts(databases):
     """Turn the list of databases into Clingo fact lines."""
@@ -51,6 +55,7 @@ def main():
     lines += bucket_facts(config.get("buckets", []))
     lines += database_facts(config.get("databases", []))
     lines += security_group_facts(config.get("security_groups", []))
+
     print("\n".join(lines))
 
 

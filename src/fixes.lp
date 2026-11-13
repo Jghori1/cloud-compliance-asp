@@ -26,3 +26,6 @@ fixed(V) :- apply(F), resolves(F, V).   % a violation is fixed if some applied f
 #minimize { C,F : apply(F), cost(F, C) }.
 
 #show apply/1.
+
+% A bucket that a service needs to be public cannot be made private
+:- apply(make_private(B)), must_stay_public(B).

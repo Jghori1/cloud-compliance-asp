@@ -1,0 +1,8 @@
+{
+  "buckets": [
+    {"id": "b1", "public": true, "encrypted": true, "sensitive": true, "must_stay_public": true},
+    {"id": "b2", "public": true, "encrypted": true, "sensitive": true}
+  ],
+  "databases": [],
+  "security_groups": []
+}
