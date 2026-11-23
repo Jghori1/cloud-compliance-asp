@@ -18,7 +18,8 @@ def make_config(n, seed):
         })
 
     for g in range(groups):
-        ingress = [{"port": 22, "cidr": "10.0.0.0/16"}]
+        ssh_cidr = "0.0.0.0/0" if rng.random() < 0.2 else "10.0.0.0/16"
+        ingress = [{"port": 22, "cidr": ssh_cidr}]
         if rng.random() < 0.4:
             ingress.append({"port": 3306, "cidr": "0.0.0.0/0"})
         config["security_groups"].append({"id": f"sg{g}", "ingress": ingress})
