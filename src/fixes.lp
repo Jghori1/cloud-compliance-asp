@@ -6,6 +6,7 @@ resolves(encrypt_bucket(B), unencrypted_bucket(B))      :- violation(unencrypted
 resolves(enable_backup(D),  no_backup(D))               :- violation(no_backup(D)).
 resolves(encrypt_db(D),     unencrypted_db(D))          :- violation(unencrypted_db(D)).
 resolves(close_port(G,P),   exposed_db(D))              :- violation(exposed_db(D)), db_sg(D,G), db_port(D,P).
+resolves(close_port(G,22),  open_ssh(G))                :- violation(open_ssh(G)).
 
 % ---- Cost of each fix ----
 
@@ -29,3 +30,4 @@ fixed(V) :- apply(F), resolves(F, V).   % a violation is fixed if some applied f
 
 % A bucket that a service needs to be public cannot be made private
 :- apply(make_private(B)), must_stay_public(B).
+

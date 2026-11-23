@@ -1,0 +1,20 @@
+{
+  "buckets": [
+    {"id": "b1", "public": false, "encrypted": true, "sensitive": true}
+  ],
+  "databases": [
+    {"id": "db1", "port": 3306, "security_group": "sg1", "backup": true, "encrypted": true}
+  ],
+  "security_groups": [
+    {"id": "sg1", "ingress": [
+      {"port": 3306, "cidr": "0.0.0.0/0"},
+      {"port": 22,   "cidr": "0.0.0.0/0"}
+    ]},
+    {"id": "sg2", "ingress": [
+      {"port": 22, "cidr": "10.0.0.0/16"}
+    ]},
+    {"id": "sg3", "ingress": [
+      {"port": 22, "cidr": "0.0.0.0/0"}
+    ]}
+  ]
+}

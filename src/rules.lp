@@ -17,4 +17,7 @@ violation(unencrypted_db(D)) :- database(D), not encrypted(D).
 violation(exposed_db(D)) :-
     database(D), db_port(D,P), db_sg(D,G), ingress(G,P,"0.0.0.0/0").
 
+% Rule 6: no security group may allow SSH (port 22) from the whole internet
+violation(open_ssh(G)) :- ingress(G,22,"0.0.0.0/0").
+
 #show violation/1.
